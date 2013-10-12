@@ -19,7 +19,14 @@ libraryDependencies ++= Seq(
 	"com.foursquare" %% "rogue-index" % "2.2.0" intransitive(),
 	"net.liftweb" %% "lift-mongodb-record" % "2.5.1",
 	"org.slf4j" % "slf4j-api" % "1.7.5",
-  	"ch.qos.logback" % "logback-classic" % "1.0.13"
+	"ch.qos.logback" % "logback-classic" % "1.0.13",
+	"com.google.guava" % "guava" % "15.0",
+	"com.google.code.findbugs" % "jsr305" % "2.0.2"
 )
 
 resolvers += "OpenNLP Repository" at "http://opennlp.sourceforge.net/maven2/"
+
+resolvers += "Sonatype Snapshots" at "http://oss.sonatype.org/content/repositories/snapshots"
+
+resolvers += "Sonatype Releases" at "http://oss.sonatype.org/content/repositories/releases"
+
