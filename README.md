@@ -21,3 +21,11 @@ Use of [Scala IDE](http://scala-ide.org/) is recommended
 2. sbt compile
 3. sbt eclipse // If using Eclipse.
 4. sbt run
+
+### Todo and issues
+
+Check out the [Issues page](https://github.com/MojoJolo/textteaser/issues) for todo and issues.
+
+##### Donation
+
+If you like TextTeaser, thank you. If you want to provide some donation, here's a link to [Gittip](https://www.gittip.com/MojoJolo/) or [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SXNUFQTQV5LY4).
