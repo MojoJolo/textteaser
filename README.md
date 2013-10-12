@@ -3,7 +3,7 @@ TextTeaser
 
 TextTeaser is an automatic summarization algorithm that combines the power of natural language processing and machine learning to produce good results.
 
-Try out TextTeaser [here](http://www.textteaser.com/).
+Try out TextTeaser [here](http://www.textteaser.com/). Or the API [here](https://www.mashape.com/mojojolo/textteaser).
 
 ##### TextTeaser can be used to:
 
