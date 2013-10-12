@@ -14,11 +14,11 @@ class KeywordService {
 
   def getBlogScore(word: String, blog: String): Long = Keyword.where(_.word eqs word).and(_.blog eqs blog)
     .fetch.map(_.score._1)
-    .reduceLeftOption(_ + _).getOrElse(0)
+    .sum
 
   def getCategoryScore(word: String, cat: String): Long = Keyword.where(_.word eqs word).and(_.category eqs cat)
     .fetch.map(_.score._1)
-    .reduceLeftOption(_ + _).getOrElse(0)
+    .sum
 
   def add(word: String, count: Long, summaryId: String, blog: String, cat: String) = Keyword.createRecord
     .word(word)
