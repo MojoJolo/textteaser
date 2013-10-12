@@ -55,9 +55,9 @@ class Summarizer @Inject() (parser: Parser, keywordService: KeywordService) {
       0
     else {
       val summ = words.map { word =>
-        topKeywords.filter(_.word == word).headOption.getOrElse(null) match {
-          case null => 0
-          case x => x.score
+        topKeywords.find(_.word == word) match {
+          case None => 0
+          case Some(x) => x.score
         }
       }.reduceLeft(_ + _)
 
@@ -70,9 +70,9 @@ class Summarizer @Inject() (parser: Parser, keywordService: KeywordService) {
       0
     else {
       val res = words.map { word =>
-        topKeywords.filter(_.word == word).headOption.getOrElse(null) match {
-          case null => 0
-          case x => x.score
+        topKeywords.find(_.word == word) match {
+          case None => 0
+          case Some(x) => x.score
         }
       }.zipWithIndex.filter(_._1 > 0)
 
