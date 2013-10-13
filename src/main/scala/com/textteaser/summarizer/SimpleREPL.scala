@@ -2,17 +2,11 @@ package com.textteaser.summarizer
 
 import net.codingwell.scalaguice.InjectorExtensions.ScalaInjector
 import com.google.inject.Guice
-import com.mongodb._
-import net.liftweb.mongodb._
 import com.textteaser.summarizer.models.Keyword
-import com.foursquare.rogue.LiftRogue._
-import org.json4s._
-import org.json4s.native.JsonMethods._
 import org.slf4j._
 
 object SimpleREPL extends App {
 
-  implicit val formats = DefaultFormats
   val config = new Config
   val guice = new ScalaInjector(Guice.createInjector(new GuiceModule(config, true)))
 
@@ -28,7 +22,9 @@ object SimpleREPL extends App {
     val article = Article("not_important", title, text)
     val summary = summarizer.summarize(article.article, article.title, article.id, article.blog, article.category)
 
-    println(summary)
+    println("---- Summary ----")
+    summary.foreach(println)
+    println("-----------------")
 
     log.info("Summarization completed.")
   }

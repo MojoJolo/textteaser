@@ -15,11 +15,10 @@ class Summarizer @Inject() (parser: Parser, keywordService: KeywordService) {
     val topKeywords = getTopKeywords(keywords.take(10), resKeywords.wordCount, link, blog, category)
 
     val result = computeScore(sentences, titleWords, topKeywords)
-    
-    toJSON(result.sortBy(-_.score).take(5).sortBy(_.order))
+    Summary(result.sortBy(-_.score).take(5).sortBy(_.order).toIndexedSeq)
   }
-  
-  def toJSON(res: Seq[Sentence]) = compact(render("sentences" -> res.map(_.sentence)))
+
+  def toJSON(summary: Summary) = compact(render("sentences" -> summary.toList))
 
   def getTopKeywords(keywords: List[ArticleKeyword], articleCount: Int, link: String, blog: String, category: String): List[TopKeyword] =
     keywords.map { k =>
@@ -94,7 +93,7 @@ case class Sentence(sentence: String, score: Double, order: Int)
 /*
    * The Density Based Selection (DBS) above is so fucking abstracted.
    * USE THIS FOR REFERENCE:
-   * 
+   *
    * def dbs(sentence, topKeywords) {
 		def words = parserService.splitWords sentence
 		words.removeAll(" ")
@@ -131,9 +130,9 @@ case class Sentence(sentence: String, score: Double, order: Int)
 
 		return formula
 	}
-	
+
 	Just for backup, this is for Summation Based Selection (SBS):
-	
+
 	def sbs(sentence, topKeywords) {
 		def words = parserService.splitWords sentence
 		words.removeAll(" ")
@@ -154,5 +153,5 @@ case class Sentence(sentence: String, score: Double, order: Int)
 
 		return formula
 	}
-	
+
    */

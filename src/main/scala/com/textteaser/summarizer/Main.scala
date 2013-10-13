@@ -32,7 +32,7 @@ object Main extends App {
   val article = Article(id, title, text)
   val summary = summarizer.summarize(article.article, article.title, article.id, article.blog, article.category)
 
-  println(summary)
+  println(summarizer.toJSON(summary))
 
   log.info("Summarization completed.")
 }
