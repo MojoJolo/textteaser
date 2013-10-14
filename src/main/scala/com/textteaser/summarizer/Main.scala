@@ -21,7 +21,7 @@ object Main extends App {
 
   log.info("Starting...")
 
-  MongoDB.defineDbAuth(DefaultMongoIdentifier, guice.instance[Mongo], config.db.name, config.db.username, config.db.password)
+  MongoDB.defineDb(DefaultMongoIdentifier, guice.instance[Mongo], config.db.name)
 
   log.info("App is now runnning.")
 

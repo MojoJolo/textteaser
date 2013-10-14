@@ -6,9 +6,9 @@ class Config {
   }
 
   object db {
-    def host = ""
-    def port = 0
-    def name = ""
+    def host = "localhost"
+    def port = 27017
+    def name = "tt_db"
     def username = ""
     def password = ""
   }
