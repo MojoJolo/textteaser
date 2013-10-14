@@ -9,7 +9,7 @@ import com.mongodb._
 import org.slf4j.LoggerFactory
 
 class GuiceModule(config: Config) extends AbstractModule with ScalaModule {
-  def configure {
+  override def configure() {
     bind[Config].in[Singleton]
     bind[Parser].in[Singleton]
     bind[Summarizer].in[Singleton]

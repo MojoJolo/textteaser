@@ -6,7 +6,7 @@ import com.google.common.base.{CharMatcher, Splitter}
 import scala.collection.JavaConverters
 
 class Parser @Inject() (sentenceDetector: SentenceDetectorME, config: Config) {
-  lazy val stopWords = Array("-", " ", ",", ".", "a", "e", "i", "o", "u", "t", "about", "above", "above", "across",
+  lazy val stopWords = Set("-", " ", ",", ".", "a", "e", "i", "o", "u", "t", "about", "above", "above", "across",
     "after", "afterwards", "again", "against", "all", "almost", "alone", "along", "already", "also", "although",
     "always", "am", "among", "amongst", "amoungst", "amount", "an", "and", "another", "any", "anyhow", "anyone",
     "anything", "anyway", "anywhere", "are", "around", "as", "at", "back", "be", "became", "because", "become",
@@ -59,15 +59,15 @@ class Parser @Inject() (sentenceDetector: SentenceDetectorME, config: Config) {
   def titleScore(titleWords: Array[String], sentence: Array[String]) =
     sentence.count(w => !stopWords.contains(w) && titleWords.contains(w)) / titleWords.size.toDouble
 
-  def getKeywords(text: String) = {
-    val words = splitWords(text).filter(w => !stopWords.contains(w)) // removing stop words
-    val kwords = words.distinct
-
-    val keywords: List[ArticleKeyword] = kwords.map { k =>
-      ArticleKeyword(k, words.count(_ == k))
-    }.toList.sortBy(-_.count)
-
-    KeywordList(keywords, words.size)
+  def getKeywords(text: String): KeywordList = {
+    val keyWords = splitWords(text)
+    val sizeWithRepeatingWords = keyWords.length
+    KeywordList(
+      keyWords.filterNot(w => stopWords.contains(w))
+      .groupBy(w => w)
+      .map(w => ArticleKeyword(w._1, w._2.length))
+      .toList.sortBy(-_.count),
+      sizeWithRepeatingWords)
   }
 
   def splitSentences(source: String) = sentenceDetector.sentDetect(source)

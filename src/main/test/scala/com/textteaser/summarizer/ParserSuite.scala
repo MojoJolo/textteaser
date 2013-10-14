@@ -19,6 +19,7 @@ class ParserSuite extends FunSuite with BeforeAndAfter {
   val stopWordsSentence   = Array("hereafter", "hereby", "herein")
   val noStopWordsSentence = Array("Accommodation", "globalization", "emancipation")
   val title               = Array("Accommodation", "globalization", "emancipation")
+  val textForKeywords     = "oneone twotwo twotwo threethree threethree threethree"
 
   before {
     longTextBuilder ++= "1914 translation by H. Rackham\n\n"
@@ -76,7 +77,7 @@ class ParserSuite extends FunSuite with BeforeAndAfter {
     assert(parser.sentenceLength(sentenceWithFiveWords) === 0.25)
   }
 
-  test("When ideal is equal to `sentence` array length, sentence length should be 1") {
+  test("When `ideal` is equal to `sentence` array length, sentence length should be 1") {
     assert(parser.sentenceLength(sentenceWithTwentyWords) === 1.0)
   }
 
@@ -107,4 +108,20 @@ class ParserSuite extends FunSuite with BeforeAndAfter {
   test("Title score of sentence that hasn't stop words should be 1") {
     assert(parser.titleScore(title, noStopWordsSentence) === 1.0)
   }
+
+  test("Keywords are sorted in descending order") {
+    assert(parser.getKeywords(textForKeywords) ===
+      KeywordList(List(ArticleKeyword("threethree", 3), ArticleKeyword("twotwo", 2), ArticleKeyword("oneone", 1)), 6))
+  }
+
+  test("Keywords are unique") {
+    assert(parser.getKeywords(textForKeywords).keywords.toSet ===
+      Set(ArticleKeyword("threethree", 3), ArticleKeyword("twotwo", 2), ArticleKeyword("oneone", 1)))
+  }
+
+  test("Any keyword isn't present in stopWords list") {
+    assert(parser.getKeywords(textForKeywords).keywords.forall(aw => !parser.stopWords.contains(aw.word)))
+  }
+
+
 }
