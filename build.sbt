@@ -21,7 +21,8 @@ libraryDependencies ++= Seq(
 	"org.slf4j" % "slf4j-api" % "1.7.5",
 	"ch.qos.logback" % "logback-classic" % "1.0.13",
 	"com.google.guava" % "guava" % "15.0",
-	"com.google.code.findbugs" % "jsr305" % "2.0.2"
+	"com.google.code.findbugs" % "jsr305" % "2.0.2",
+	"org.scalatest" % "scalatest_2.10" % "1.9.2" % "test"
 )
 
 resolvers += "OpenNLP Repository" at "http://opennlp.sourceforge.net/maven2/"
