@@ -15,8 +15,7 @@
   <classpathentry path="/Users/jolobalbin/.ivy2/cache/org.sonatype.sisu.inject/cglib/jars/cglib-2.2.1-v20090111.jar" kind="lib"></classpathentry>
   <classpathentry path="/Users/jolobalbin/.ivy2/cache/asm/asm/jars/asm-3.1.jar" kind="lib"></classpathentry>
   <classpathentry path="/Users/jolobalbin/.ivy2/cache/com.google.inject.extensions/guice-multibindings/jars/guice-multibindings-3.0.jar" kind="lib"></classpathentry>
-  <classpathentry path="/Users/jolobalbin/.ivy2/cache/com.google.guava/guava/jars/guava-11.0.1.jar" kind="lib"></classpathentry>
-  <classpathentry path="/Users/jolobalbin/.ivy2/cache/com.google.code.findbugs/jsr305/jars/jsr305-1.3.9.jar" kind="lib"></classpathentry>
+  <classpathentry path="/Users/jolobalbin/.ivy2/cache/com.google.guava/guava/bundles/guava-15.0.jar" kind="lib"></classpathentry>
   <classpathentry path="/Users/jolobalbin/.ivy2/cache/org.json4s/json4s-native_2.10/jars/json4s-native_2.10-3.2.4.jar" kind="lib"></classpathentry>
   <classpathentry path="/Users/jolobalbin/.ivy2/cache/org.json4s/json4s-core_2.10/jars/json4s-core_2.10-3.2.4.jar" kind="lib"></classpathentry>
   <classpathentry path="/Users/jolobalbin/.ivy2/cache/org.json4s/json4s-ast_2.10/jars/json4s-ast_2.10-3.2.4.jar" kind="lib"></classpathentry>
@@ -50,6 +49,8 @@
   <classpathentry path="/Users/jolobalbin/.ivy2/cache/org.mongodb/mongo-java-driver/jars/mongo-java-driver-2.10.1.jar" kind="lib"></classpathentry>
   <classpathentry path="/Users/jolobalbin/.ivy2/cache/ch.qos.logback/logback-classic/jars/logback-classic-1.0.13.jar" kind="lib"></classpathentry>
   <classpathentry path="/Users/jolobalbin/.ivy2/cache/ch.qos.logback/logback-core/jars/logback-core-1.0.13.jar" kind="lib"></classpathentry>
+  <classpathentry path="/Users/jolobalbin/.ivy2/cache/com.google.code.findbugs/jsr305/jars/jsr305-2.0.2.jar" kind="lib"></classpathentry>
+  <classpathentry path="/Users/jolobalbin/.ivy2/cache/org.scalatest/scalatest_2.10/jars/scalatest_2.10-1.9.2.jar" kind="lib"></classpathentry>
   <classpathentry path="org.eclipse.jdt.launching.JRE_CONTAINER" kind="con"></classpathentry>
   <classpathentry path="bin" kind="output"></classpathentry>
 </classpath>
