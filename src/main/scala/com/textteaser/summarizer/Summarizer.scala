@@ -5,21 +5,41 @@ import org.json4s.native.JsonMethods._
 import org.json4s.JsonDSL._
 
 class Summarizer @Inject() (parser: Parser, keywordService: KeywordService) {
+
+  private var _summarySize: Int = 5
+  private var _keywordsSize: Int = 10
+
+  def summarySize = _summarySize
+  def summarySize_=(newSize: Int) = {
+    _summarySize = newSize
+  }
+
+  def keywordsSize = _keywordsSize
+  def keywordsSize_=(newSize: Int) = {
+    _keywordsSize = newSize
+  }
+
+  private def ensureSizeDoesNotExceedLimit(size: Int, limit: Int): Int = {
+    size.min(limit)
+  }
+
   def summarize(text: String, title: String, link: String, blog: String, category: String) = {
     val sentences = parser.splitSentences(text)
     def titleWords = parser.splitWords(title)
     val resKeywords = parser.getKeywords(text)
     val keywords = resKeywords.keywords
-
-    val topKeywords = getTopKeywords(keywords.take(10), resKeywords.wordCount, link, blog, category)
-
+    keywordsSize = ensureSizeDoesNotExceedLimit(keywordsSize, keywords.size)
+    val topKeywords = getTopKeywords(keywords.take(keywordsSize), resKeywords.wordCount, link, blog, category)
     val result = computeScore(sentences, titleWords, topKeywords)
-    Summary(result.sortBy(-_.score).take(5).sortBy(_.order).toIndexedSeq)
+    summarySize = ensureSizeDoesNotExceedLimit(summarySize, result.size)
+    Summary(result.sortBy(-_.score).take(summarySize).sortBy(_.order).toIndexedSeq)
   }
 
   def toJSON(summary: Summary) = compact(render("sentences" -> summary.toList))
 
-  def getTopKeywords(keywords: List[ArticleKeyword], articleCount: Int, link: String, blog: String, category: String): List[TopKeyword] =
+  def getTopKeywords(keywords: List[ArticleKeyword],
+                     articleCount: Int, link: String,
+                     blog: String, category: String): List[TopKeyword] =
     keywords.map { k =>
       val blogCount = keywordService.getBlogCount(blog) + 1.0
       val categoryCount = keywordService.getCategoryCount(category) + 1.0
@@ -75,7 +95,7 @@ class Summarizer @Inject() (parser: Parser, keywordService: KeywordService) {
       }.zipWithIndex.filter(_._1 > 0)
 
       val summ = res.zip(res.slice(1, res.size)).map { r =>
-        (r._1._1 * r._2._2) / Math.pow((r._1._2 - r._2._2), 2)
+        (r._1._1 * r._2._2) / Math.pow(r._1._2 - r._2._2, 2)
       }.sum
 
       val k = words.intersect(topKeywords.map(_.word)).size + 1
