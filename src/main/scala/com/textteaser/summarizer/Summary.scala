@@ -11,7 +11,7 @@ case class Summary(results: IndexedSeq[Sentence]) extends Traversable[String] {
 
   def takeChars(limitCharCount: Int): Summary = {
     var count = 0
-    // not beautiful, but does the job
+
     val newSentences = results.takeWhile { sentence =>
       count += sentence.sentence.size
       limitCharCount >= count

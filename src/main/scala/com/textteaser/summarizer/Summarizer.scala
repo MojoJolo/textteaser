@@ -3,6 +3,7 @@ package com.textteaser.summarizer
 import com.google.inject.Inject
 import org.json4s.native.JsonMethods._
 import org.json4s.JsonDSL._
+import scala.collection.mutable.ListBuffer
 
 class Summarizer @Inject() (parser: Parser, keywordService: KeywordService) {
 
@@ -94,8 +95,31 @@ class Summarizer @Inject() (parser: Parser, keywordService: KeywordService) {
         }
       }.zipWithIndex.filter(_._1 > 0)
 
+
       val summ = res.zip(res.slice(1, res.size)).map { r =>
-        (r._1._1 * r._2._2) / Math.pow(r._1._2 - r._2._2, 2)
+        (r._1._1 * r._2._1) / Math.pow(r._1._2 - r._2._2, 2)
+      }.sum
+
+      val k = words.intersect(topKeywords.map(_.word)).size + 1
+
+      (1.0 / (k * (k + 1.0))) * summ
+    }
+  }
+
+  def canonical_dbs(words: Array[String], topKeywords: List[TopKeyword]): Double = {
+    if (words.size == 0)
+      0
+    else {
+      val res = words.map { word =>
+        topKeywords.find(_.word == word) match {
+          case None => 0
+          case Some(x) => x.score
+        }
+      }.zipWithIndex.filter(_._1 > 0)
+
+
+      val summ = res.zip(res.slice(1, res.size)).map { r =>
+        (r._1._1 * r._2._1) / Math.pow(r._1._2 - r._2._2, 2)
       }.sum
 
       val k = words.intersect(topKeywords.map(_.word)).size + 1
