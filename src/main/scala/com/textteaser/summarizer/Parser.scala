@@ -75,28 +75,29 @@ class Parser @Inject() (sentenceDetector: SentenceDetectorME, config: Config) {
   def sentencePosition(ctr: Int, sentenceCount: Double) = {
     val normalized = ctr / sentenceCount
 
-    if (normalized > 0 && normalized <= 0.1)
-      0.17
-    else if (normalized > 0.1 && normalized <= 0.2)
-      0.23
-    else if (normalized > 0.2 && normalized <= 0.3)
-      0.14
-    else if (normalized > 0.3 && normalized <= 0.4)
-      0.08
-    else if (normalized > 0.4 && normalized <= 0.5)
-      0.05
-    else if (normalized > 0.5 && normalized <= 0.6)
-      0.04
-    else if (normalized > 0.6 && normalized <= 0.7)
-      0.06
-    else if (normalized > 0.7 && normalized <= 0.8)
-      0.04
-    else if (normalized > 0.8 && normalized <= 0.9)
-      0.04
-    else if (normalized > 0.9 && normalized <= 1.0)
-      0.15
-    else
+    if(normalized > 1.0)
       0d
+    else if (normalized > 0.9)
+      0.15
+    else if (normalized > 0.8)
+      0.04
+    else if (normalized > 0.7) 
+      0.04
+    else if (normalized > 0.6) 
+      0.06
+    else if (normalized > 0.5) 
+      0.04
+    else if (normalized > 0.4) 
+      0.05
+    else if (normalized > 0.3) 
+      0.08
+    else if (normalized > 0.2) 
+      0.14
+    else if (normalized > 0.1) 
+      0.23
+    else if (normalized > 0) 
+      0.17
+    0d
   }
 }
 
