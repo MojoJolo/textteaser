@@ -19,13 +19,12 @@ Use of [Scala IDE](http://scala-ide.org/) is recommended
 
 ### Setup
 
-1. git clone https://github.com/MojoJolo/textteaser.git
-2. sbt compile
-3. sbt eclipse // If using Eclipse.
-4. sbt run
-
-[![Clone in Koding](http://learn.koding.com/btn/clone_d.png)][koding]
-[koding]: https://koding.com/Teamwork?import=https://github.com/MojoJolo/textteaser/archive/master.zip&c=git3
+```bash
+$ git clone https://github.com/MojoJolo/textteaser.git
+$ sbt compile
+$ sbt eclipse // If using Eclipse.
+$ sbt run
+```
 
 ### Todo and issues
 
