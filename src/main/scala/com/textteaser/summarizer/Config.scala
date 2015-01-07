@@ -1,6 +1,9 @@
 package com.textteaser.summarizer
 
 class Config {
+  
+  def lang = "EN"
+  
   object words {
     def ideal = 20
   }
