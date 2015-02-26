@@ -34,6 +34,6 @@ $ sbt run
 
 Check out the [Issues page](https://github.com/MojoJolo/textteaser/issues) for todo and issues.
 
-##### Donation
+### Commercial Support
 
-If you like TextTeaser, thank you. If you want to provide some donation, here's a link to [Gittip](https://www.gittip.com/MojoJolo/) or [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SXNUFQTQV5LY4).
+Commercial support for TextTeaser or custom summarizers can be provided by [DataTeaser](http://www.datateaser.com/?textteaser).
