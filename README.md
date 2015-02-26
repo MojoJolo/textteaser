@@ -3,9 +3,9 @@ TextTeaser
 
 TextTeaser is an automatic summarization algorithm that combines the power of natural language processing and machine learning to produce good results.
 
-TextTeaser is now ported in Python. Development is continued by [DataTeaser](http://www.datateaser.com/?textteaser).
+TextTeaser is ported in Python and is now part of [DataTeaser](http://www.datateaser.com/?textteaser).
 
-You can check the [Python TextTeaser here](https://github.com/MojoJolo/textteaser.py).
+Future developments can be seen in the [DataTeaser's fork of TextTeaser](https://github.com/DataTeaser/textteaser_py).
 
 ### Requirements
 
